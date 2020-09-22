@@ -1,0 +1,6 @@
+name: HunterUHC
+version: 0.0.1
+author: Aksyo
+main: net.aksyo.HunterUHC
+commands:
+  hunter:

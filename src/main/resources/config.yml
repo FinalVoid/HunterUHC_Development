@@ -1,0 +1,335 @@
+#HUNTER UHC CONFIGURATION FILE.
+
+
+#-------------------------------------------------------
+#
+#               Role & Teams Configuration
+#
+#------------------------------------------------------
+
+staff:
+
+  #Permission to bypass
+
+  bypass:
+
+    join: "hunter.moderator"  #Permission to join while the game is active
+
+
+
+
+#-------------------------------------------------------
+#
+#               Game Messages Configuration
+#
+#------------------------------------------------------
+
+messages:
+
+
+  game:
+
+    start: "&6Game starts in &e%time% &6seconds"
+
+    restart: "&cNot enough players to start the game"
+
+    launch: "&aLaunching HunterUHC!"
+
+    playerjoin: "&a %player% &ejoined the game"
+
+    playerquit: "&c %player% &6left the game"
+
+    rolereveal:
+      - "                             &3&l Revealing Roles "
+      - " "
+      - "&3HunterUHC &7&l&r&eYour role is : &b&l %role%"
+      - " "
+      - "    &5&l-  &r&9%description%"
+      - " "
+      - "&3HunterUHC &7&l&r&2Type /role to have further information"
+
+    damageactivation: "&aYou can now take damage"
+
+    pvpactivation: "&aPvp is now activated"
+
+    bordershrinking: "&6Border is now shrinking"
+
+#-------------------------------------------------------
+#
+#               Game Configuration
+#
+#------------------------------------------------------
+
+config:
+
+  join:
+
+    #The gamemode of a normal player when he joins the game (excludes moderators)
+
+    gamemode: "adventure"
+
+
+    #The minimum amount of players to start a game
+
+    minimumplayers: 12
+
+
+    #The time for a game to start, in seconds
+
+    starttime: 30
+
+
+
+  game:
+
+
+    #If the game auto-starts, or if you want to start manually.
+
+    autostart: false
+
+    #When players can start taking damage (in minutes [double value])
+
+    damage: 1.5
+
+    #When the role reveal happens (in minutes [double value]
+
+    rolereveal: 2.0
+
+    #When pvp is activated (in minutes [double value])
+
+    pvp: 2.5
+
+
+
+
+
+
+  #Map & Border configuration
+
+  map:
+
+    #The maps center location
+
+    center:
+
+      x: 0   #X position
+      y: 0   #Y position
+      z: 40  #Z position
+
+    border:
+
+      size: 50  #The size at the start of the game
+
+      finalsize: 10  #The size at the end of the game (when it doesn't shrink anymore)
+
+      speed: 1.5    #The speed in block per seconds
+
+      time: 2    #The time in minutes of when the border starts shrinking
+
+
+
+
+#-------------------------------------------------------
+#
+#               Role & Teams Configuration
+#
+#------------------------------------------------------
+
+game:
+
+  #The Game Teams Name
+
+  teams:
+    hunter: "Hunters"
+    ants: "Ants"
+    phantom: "Phantom Troop"
+
+
+    #-------------------------------------
+    # If you wish the role to NOT be solo, be sure to config the percentage,
+    # and MAKE SURE THAT SUM OF ALL THE PERCENTAGES ARE EQUAL TO 100
+    #-------------------------------------
+    # name: The roles name used in game
+    # activated : If you want the role to be in the game.
+    # information : The information about the role that displays when the player receives the role. type %enter% to skip a line
+    # description : A quick role description available to all playeers
+    # solo : If the role is a only given to one player per game.
+    # percentage : If the role IS NOT SOLO, you set the percentage of the role. (The percentage of players that will receive the role).
+
+  gon:
+
+    #Gon Role Config
+
+    name: "Gon"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  killua:
+
+    #Killua Role Config
+
+    name: "Killua"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  kurapika:
+
+    #Kurapika Role Config
+
+    name: "Kurapika"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  netero:
+
+    #Netero Role Config
+
+    name: "Netero"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  hunter:
+
+    #Hunters Role Config
+
+    name: "Hunter"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: false  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 30  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  phantom:
+
+    #Phantom Troop Role Config
+
+    name: "Phantom"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: false  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 20  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  ant:
+
+    #Ants Role Config
+
+    name: "Ant"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: false  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 50  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  meruem:
+
+    #Meruem (Ants King) Role Config
+
+    name: "Meruem"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+  royalguard:
+
+    #Royal Guards (Ant kig guard) Role Config
+
+    name: "Royal Guard"
+    activated: true
+    information: " "  #type %enter% to skip a line
+    description: " "
+    deathmessage: true
+    solo: true  #If the role can only be given to one player per game. If false, be sure to config the percentage.
+    percentage: 0  #CONFIG ONLY IF solo is false. MAKE SURE THAT IF YOU ADD ALL THE VALUES, IT EQUALS TO 100;
+
+
+
+#-------------------------------------------------------
+#
+#               Episodes Configuration
+#
+#------------------------------------------------------
+
+episodes:
+
+  hunterexam:
+
+    #Hunter Exam Episode Config
+
+    name: "Hunter Exam"
+    activated: true
+    broadcastedmessage: "&6Test Debug - &2Hunter Exam Episode"   #The message that will be broadcasted when the episodes starts
+    time: 1   #When to start the episode (in minutes)
+
+
+
+  yorkshin:
+
+    #Yorkshin city Episode Config
+
+    name: "Yorkshin City"
+    activated: true
+    broadcastedmessage: "&6Test Debug - &2Yorkshin City Episode "   #The message that will be broadcasted when the episodes starts
+    time: 2   #When to start the episode (in minutes)
+
+
+  greedisland:
+
+    #Greed Island Episode Config
+
+    name: "Greed Island"
+    activated: true
+    broadcastedmessage: "&6Test Debug - &2Greed Island Episode"   #The message that will be broadcasted when the episodes starts
+    time: 3   #When to start the episode (in minutes)
+
+
+  antsinvasion:
+
+    #Ants Invasion Episode Config
+
+    name: "Ants Invasion"
+    activated: true
+    broadcastedmessage: "&6Test Debug - &2Ants Invasion Episode"   #The message that will be broadcasted when the episodes starts
+    time: 4   #When to start the episode (in minutes)
+
+
+
+
+
+
+
+
+
+
+
+
