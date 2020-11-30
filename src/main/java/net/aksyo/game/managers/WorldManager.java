@@ -1,14 +1,11 @@
 package net.aksyo.game.managers;
 
 import net.aksyo.HunterUHC;
-import net.aksyo.game.roles.gameroles.Hunter;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Stack;
 
 public class WorldManager {
 
@@ -40,7 +37,7 @@ public class WorldManager {
             double z = Math.cos(angle) * (width - 3);
             if (playersList.size() > 0) {
                 new Cage(center.clone().add(x, 3, z)).setCage();
-                playersList.remove(0).teleport(center.clone().add(x + 0.5, 4, z + 0.5));
+                playersList.remove(0).teleport(center.clone().add(x + 0.5, 3, z + 0.5));
             }
         }
     }

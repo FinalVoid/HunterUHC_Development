@@ -3,6 +3,7 @@ package net.aksyo.game.tasks;
 import net.aksyo.Constant;
 import net.aksyo.HunterUHC;
 import net.aksyo.game.GameState;
+import net.aksyo.game.managers.EpisodeManager;
 import net.aksyo.game.managers.GameManager;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -49,7 +50,7 @@ public class StartGameTask {
                     hunterUHC.getWorldManager().createWorldBorder(HunterUHC.getInstance().getServer().getWorlds().get(0));
                     gManager.setMovement(false);
 
-                    hunterUHC.getEpisodeManager().runEpisodes();
+                    new EpisodeManager().runEpisodes();
                     hunterUHC.getTeamManager().distribute(true, gManager.isDebug());
 
                     getReleaseTask().runTaskTimer(hunterUHC, 20 ,20);

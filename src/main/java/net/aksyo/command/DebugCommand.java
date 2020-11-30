@@ -4,7 +4,6 @@ import net.aksyo.Constant;
 import net.aksyo.HunterUHC;
 import net.aksyo.game.episodes.IEpisode;
 import net.aksyo.game.managers.EpisodeManager;
-import net.aksyo.game.roles.gameroles.Hunter;
 import net.aksyo.game.tasks.MainGameTask;
 import net.aksyo.game.tasks.StartGameTask;
 import net.aksyo.player.UHCPlayer;
@@ -14,7 +13,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.reflections.Reflections;
@@ -92,8 +90,13 @@ public class DebugCommand extends HCommand {
 
 
             case "border" :
-                HunterUHC.getInstance().getWorldManager().deactivateBorder();
-                player.sendMessage(Constant.getAdminPrefix(true) + "§2De-activated border");
+                if (args.length == 3 && args[2].equalsIgnoreCase("shrink")) {
+                    HunterUHC.getInstance().getWorldManager().startBorderShrink(10, 2);
+                    break;
+                } else {
+                    HunterUHC.getInstance().getWorldManager().deactivateBorder();
+                    player.sendMessage(Constant.getAdminPrefix(true) + "§2De-activated border");
+                }
                 break;
 
             case "see" :

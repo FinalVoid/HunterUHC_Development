@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 
 
 import java.util.*;
-import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 
 
@@ -33,13 +32,13 @@ public class TeamManager {
 
     /**
      *
-     * @param player The player you want to get under the uhcplayer formmat
-     * @return the uhcplayer
+     * @param player The player you want to get under the uhcplayer format
+     * @return the uhcplayer - checks the threads StrackTraceElements to check for any code errors || NullPointerEx
      */
     public UHCPlayer getUHCPlayer(Player player) {
 
         try {
-            return TEAMS.values().stream().map(set -> set.stream().filter(uhcp -> uhcp.getPlayer().equals(player)).findAny().get()).findAny().get();
+            return TEAMS.values().stream().map(set -> set.stream().filter(uhcp -> uhcp.getPlayer().equals(player)).findFirst().get()).findAny().get();
         } catch (Exception e) {
             HunterUHC.getInstance().log("No UHCPlayer found");
             for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
@@ -65,7 +64,7 @@ public class TeamManager {
      */
     public UHCPlayer[] getUHCPlayers() {
 
-        //return TEAMS.values().stream().map(HashSet::iterator).collect(Collectors.toList()).toArray(new UHCPlayer[0]);
+        //return TEAMS.values().stream().map(HashSet::iterator).collect(Collectors.toList()).toArray(new UHCPlayer[] {});
 
         int count = TEAMS.values().stream().mapToInt(HashSet::size).sum();
 
@@ -108,11 +107,11 @@ public class TeamManager {
      */
     public void distribute(boolean complete, boolean instantDebug) {
 
-        boolean debug = HunterUHC.getInstance().getGameManager().isDebug() ? true : instantDebug;
+        final boolean debug = HunterUHC.getInstance().getGameManager().isDebug() ? true : instantDebug;
 
         final List<Player> gamePlayers = new ArrayList<>(Bukkit.getOnlinePlayers()); //TODO gameplayers method
 
-        if(instantDebug) HunterUHC.getInstance().log(String.valueOf(gamePlayers.size()));
+        if(debug) HunterUHC.getInstance().log(String.valueOf(gamePlayers.size()));
 
         final int players = gamePlayers.size();
 
@@ -130,7 +129,6 @@ public class TeamManager {
                     for (int i = 0; i != Math.floor((players - solos) * (role.getPercentage() * 0.01)); i++) {
                         availableRoles.add(r);
                     }
-
                 }
                 if (debug) HunterUHC.getInstance().log(role.getName() + " was registered [" + role.getClass().getSimpleName() + "]. List size : " + availableRoles.size() + " [false]");
             }
@@ -139,7 +137,7 @@ public class TeamManager {
 
             HunterUHC.getInstance().getGameManager().freezeGame(false);
             
-            throw new IllegalStateException("Too much role for the amount of players");
+            throw new IllegalStateException("Too much roles for the amount of players");
 
         } else if (availableRoles.size() != players && availableRoles.size() < players) {
 
@@ -186,7 +184,7 @@ public class TeamManager {
     }
 
     /**
-     * Reveals the a player has
+     * Reveals the role a player has
      */
     public void revealRoles() {
 

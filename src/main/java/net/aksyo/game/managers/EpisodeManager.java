@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 public class EpisodeManager {
 
    private int index = 0;
-   private List<IEpisode> registered = Arrays.asList(new HunterExamEpisode(), new YorkshinEpisode(), new GreedIslandEpisode(), new AntsInvasionEpisode());
+   private final List<IEpisode> registered = Arrays.asList(new HunterExamEpisode(), new YorkshinEpisode(), new GreedIslandEpisode(), new AntsInvasionEpisode());
    private List<IEpisode> sorted = new ArrayList<>();
+   private boolean initialized = false;
 
    public EpisodeManager() {
 
@@ -70,14 +71,18 @@ public class EpisodeManager {
 
     private void initializeEpisodes() {
 
-        final List<IEpisode> r = new ArrayList<>(registered);
+       if(!initialized) {
+           initialized = true;
+           final List<IEpisode> r = new ArrayList<>(registered);
 
-        sorted =  r.stream().filter(IEpisode::isActivated).sorted(new Comparator<IEpisode>() {
-            @Override
-            public int compare(IEpisode o1, IEpisode o2) {
-                return o1.getStartTime() - o2.getStartTime();
-            }
-        }).collect(Collectors.toList());
+           sorted =  r.stream().filter(IEpisode::isActivated).sorted(new Comparator<IEpisode>() {
+               @Override
+               public int compare(IEpisode o1, IEpisode o2) {
+                   return o1.getStartTime() - o2.getStartTime();
+               }
+           }).collect(Collectors.toList());
+       }
+
 
     }
 

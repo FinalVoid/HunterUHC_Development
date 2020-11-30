@@ -1,9 +1,14 @@
 package net.aksyo.command;
 
+import net.aksyo.HunterUHC;
+import net.aksyo.abilities.Ability;
+import net.aksyo.player.UHCPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Arrays;
 
 public class CommandHandler implements CommandExecutor {
 
@@ -30,6 +35,18 @@ public class CommandHandler implements CommandExecutor {
                     } else if(!hCommand.isAdmin()) {
                         hCommand.onCommand(player, args);
                         return true;
+                    }
+                }
+            }
+
+            for (Ability ability : Ability.getGetAbilityList()) {
+                if (args[0].equalsIgnoreCase(ability.getCommand())) {
+                    UHCPlayer uhcPlayer = HunterUHC.getInstance().getTeamManager().getUHCPlayer(player);
+                    if (uhcPlayer != null) {
+                        if (Arrays.stream(ability.getAllowedRoleTypes()).anyMatch(r -> r == uhcPlayer.getRole())) {
+                            ability.onCommand(player, args);
+                            return true;
+                        }
                     }
                 }
             }

@@ -1,9 +1,7 @@
 package net.aksyo;
 
-import net.aksyo.game.episodes.IEpisode;
 import net.aksyo.game.roles.Role;
 import net.aksyo.game.roles.RoleType;
-import org.reflections.Reflections;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -12,6 +10,13 @@ import java.util.stream.Collectors;
 public class Debug {
 
     public static void main(String[] args) {
+
+        /*Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez rentrer l'age");
+        int age = scanner.nextInt();
+        System.out.println("Veuillez rentrer votre prenom");
+        String prenom = scanner.next();
+        System.out.println("Votre age est de " + age + " est votre prenom est " + prenom);*/
 
         //distribute(32);
 
@@ -30,7 +35,7 @@ public class Debug {
             }
         };
 
-        executor.execute(HunterExamEpisode.class);*/
+        executor.execute(HunterExamEpisode.class);
 
         Reflections reflections = new Reflections("net.aksyo.game.episodes");
 
@@ -39,7 +44,7 @@ public class Debug {
 
         for(Class<? extends IEpisode> clazz : allClasses) {
             System.out.println(clazz.getName());
-        }
+        }*/
 
     }
 
@@ -125,5 +130,6 @@ public class Debug {
         System.out.println("Number of royalguard : " + royal.get() + " percentage : " + (royal.get() / players) * 100);
         System.out.println("Number of hunter : " + hunter.get() + " percentage : " + (hunter.get() / players) * 100);
         System.out.println("Number of ant : " + ant.get() + " percentage : " + (ant.get() / players) * 100);
+
     }
 }

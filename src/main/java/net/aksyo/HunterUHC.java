@@ -44,7 +44,6 @@ public class HunterUHC extends JavaPlugin {
         episodeManager = new EpisodeManager();
         worldManager = new WorldManager();
 
-
         startGameTask = new StartGameTask();
         mainGameTask = new MainGameTask();
 

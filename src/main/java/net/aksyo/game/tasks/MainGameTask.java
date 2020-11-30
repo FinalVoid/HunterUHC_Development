@@ -5,7 +5,6 @@ import net.aksyo.HunterUHC;
 import net.aksyo.game.GameState;
 import net.aksyo.game.managers.GameManager;
 import net.aksyo.game.managers.WorldManager;
-import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class MainGameTask {
@@ -30,8 +29,6 @@ public class MainGameTask {
         @Override
         public void run() {
 
-            System.out.println("Passed main task");
-
             if(gManager.isGameState(GameState.FROZEN)) return;
 
             if(index == damageActivation) {
@@ -54,8 +51,6 @@ public class MainGameTask {
                 wManager.startBorderShrink((int) Constant.getWorldParameter("border.finalsize"), (double) Constant.getWorldParameter("border.speed"));
                 Constant.silentBroadcast(Constant.getMessages("bordershrinking"));
             }
-
-
 
 
         }
