@@ -1,12 +1,14 @@
 package net.aksyo;
 
+import net.aksyo.game.managers.TeamManager;
 import net.aksyo.game.roles.Role;
+import net.aksyo.game.roles.RoleType;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class Constant {
@@ -99,6 +101,31 @@ public final class Constant {
     public static List<String> getRoleRevealMessage() {
 
         return config.getStringList("messages.game.rolereveal");
+
+    }
+
+    public final static Object getAbilityName(String ability, String path) {
+        return config.get("abilities." + ability + path);
+    }
+
+    public final static Set<RoleType> getAllowedRoles(String ability) {
+
+        Set<RoleType> roles = new HashSet<>();
+
+        for (String str : config.getStringList("abilities." + ability + ".roles")) {
+
+            Arrays.stream(RoleType.values()).forEach(r -> {
+                Role role = r.get();
+                if (role.isActivated()) {
+                    if (role.getName().equalsIgnoreCase(str)) {
+                        roles.add(r);
+                    }
+                }
+
+            });
+        }
+
+        return roles;
 
     }
 

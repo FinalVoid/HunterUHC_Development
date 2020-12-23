@@ -5,6 +5,7 @@ import net.aksyo.HunterUHC;
 import net.aksyo.game.episodes.*;
 import net.aksyo.player.UHCPlayer;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.reflections.Reflections;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -13,15 +14,13 @@ import java.util.stream.Collectors;
 public class EpisodeManager {
 
    private int index = 0;
-   private final List<IEpisode> registered = Arrays.asList(new HunterExamEpisode(), new YorkshinEpisode(), new GreedIslandEpisode(), new AntsInvasionEpisode());
    private List<IEpisode> sorted = new ArrayList<>();
    private boolean initialized = false;
 
+   //Do not call this constructor more then once
    public EpisodeManager() {
-
+       initializeEpisodes();
    }
-
-    { initializeEpisodes(); }
 
     public void runEpisodes() {
 
@@ -72,8 +71,23 @@ public class EpisodeManager {
     private void initializeEpisodes() {
 
        if(!initialized) {
-           initialized = true;
-           final List<IEpisode> r = new ArrayList<>(registered);
+
+           this.initialized = true;
+           Reflections reflections = new Reflections("net.aksyo.game.episodes");
+
+           final List<IEpisode> r = new ArrayList<>();
+
+           reflections.getSubTypesOf(IEpisode.class).forEach(e -> {
+               try {
+                   r.add(e.newInstance());
+               } catch (InstantiationException | IllegalAccessException exception) {
+                   exception.printStackTrace();
+               }
+           });
+
+           for (IEpisode iEpisode : r) {
+               HunterUHC.getInstance().log("[EPISODE] REGISTERED : " + iEpisode.getName() + " ST : " + iEpisode.getStartTime());
+           }
 
            sorted =  r.stream().filter(IEpisode::isActivated).sorted(new Comparator<IEpisode>() {
                @Override

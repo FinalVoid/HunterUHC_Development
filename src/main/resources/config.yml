@@ -152,7 +152,7 @@ game:
     # name: The roles name used in game
     # activated : If you want the role to be in the game.
     # information : The information about the role that displays when the player receives the role. type %enter% to skip a line
-    # description : A quick role description available to all playeers
+    # description : A quick role description available to all players
     # solo : If the role is a only given to one player per game.
     # percentage : If the role IS NOT SOLO, you set the percentage of the role. (The percentage of players that will receive the role).
 
@@ -321,6 +321,31 @@ episodes:
     activated: true
     broadcastedmessage: "&6Test Debug - &2Ants Invasion Episode"   #The message that will be broadcasted when the episodes starts
     time: 4   #When to start the episode (in minutes)
+
+
+#-------------------------------------------------------
+#
+#               Abilites Configuration
+#
+#------------------------------------------------------
+
+abilities:
+
+  # name: The ability name used in game
+  # activated : If you want the ability to work for the players with the roles specified
+  # time : The amount of times a role can use this ability
+  # roles : The roles that have access to this ability - Insert the name you chose of the role you which to give access to
+
+
+  gonattack:
+
+    #An ability that lets you choose between 3 attacks (Rock, Paper and Scissors)
+
+    name: "&6Gon Attack Ability"
+    activated: true
+    time: 1
+    roles:
+      - "Gon"
 
 
 

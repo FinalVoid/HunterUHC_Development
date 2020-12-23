@@ -133,6 +133,7 @@ public class TeamManager {
                 if (debug) HunterUHC.getInstance().log(role.getName() + " was registered [" + role.getClass().getSimpleName() + "]. List size : " + availableRoles.size() + " [false]");
             }
         }
+
         if (availableRoles.size() != players && availableRoles.size() > players) {
 
             HunterUHC.getInstance().getGameManager().freezeGame(false);

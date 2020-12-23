@@ -10,6 +10,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class AntsInvasionEpisode implements IEpisode {
 

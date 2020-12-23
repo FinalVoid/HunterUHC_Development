@@ -3,6 +3,7 @@ package net.aksyo.command;
 import net.aksyo.HunterUHC;
 import net.aksyo.abilities.Ability;
 import net.aksyo.player.UHCPlayer;
+import net.aksyo.utils.Pair;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,9 +44,12 @@ public class CommandHandler implements CommandExecutor {
                 if (args[0].equalsIgnoreCase(ability.getCommand())) {
                     UHCPlayer uhcPlayer = HunterUHC.getInstance().getTeamManager().getUHCPlayer(player);
                     if (uhcPlayer != null) {
-                        if (Arrays.stream(ability.getAllowedRoleTypes()).anyMatch(r -> r == uhcPlayer.getRole())) {
-                            ability.onCommand(player, args);
-                            return true;
+                        if (ability.getAllowedRoleTypes().stream().anyMatch(r -> r == uhcPlayer.getRole())) {
+                            if (Ability.getAbilityManager().get(ability).get(uhcPlayer).getRight()) {
+                                ability.onCommand(player, args);
+                                handleAbilityCancel(ability, uhcPlayer, Ability.getAbilityManager().get(ability).get(uhcPlayer).getLeft());
+                                return true;
+                            }
                         }
                     }
                 }
@@ -57,5 +61,16 @@ public class CommandHandler implements CommandExecutor {
         }
 
         return false;
+    }
+
+    protected void handleAbilityCancel(Ability ability, UHCPlayer uhcPlayer, int times) {
+
+        if (Ability.getAbilityManager().get(ability).get(uhcPlayer).getLeft() == ability.getTimes()) {
+            Ability.getAbilityManager().get(ability).replace(uhcPlayer, Pair.of(false, times));
+            return;
+        }
+
+        Ability.getAbilityManager().get(ability).replace(uhcPlayer, Pair.of(true, times++));
+
     }
 }
